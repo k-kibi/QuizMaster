@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title Quiz Master
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = javascript_pack_tag 'application'
+    = stylesheet_pack_tag 'application'
+
+  body
+    header.navbar.navbar-dark.bg-dark.navbar-expand.flex-column.flex-md-row.bd-navbar
+      = link_to 'QuizMaster', admin_root_path, class: 'navbar-brand'
+
+    .container
+      = render_alert
+      = yield

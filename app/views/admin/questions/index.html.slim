@@ -1,0 +1,20 @@
+p.mt-2 = link_to 'New Question', new_admin_question_path, class: 'btn btn-primary'
+
+- if @resources.present?
+  table.table
+    thead
+      tr
+        th scope="col" Question
+        th scope="col" Answer
+        th
+    tbody
+      - @resources.each do |question|
+        tr
+          td = markdown_render(question.content)
+          td = question.answer
+          td.d-flex.flex-row
+            = link_to 'Edit', edit_admin_question_path(question.id), class: 'btn btn-primary'
+            = form_for question, url: admin_question_path(question.id), method: :delete, html: { class: 'ml-2' } do |f|
+              = f.submit 'Delete', class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete?' }
+
+  = paginate @resources
