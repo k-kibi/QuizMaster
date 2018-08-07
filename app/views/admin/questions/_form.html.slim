@@ -1,9 +1,9 @@
 .form-group
   = f.label :content
-  = f.text_area :content, class: 'form-control'
+  = f.text_area :content, class: 'form-control', required: true
 
 .form-group
   = f.label :answer
-  = f.text_field :answer, class: 'form-control'
+  = f.text_field :answer, class: 'form-control', required: true
 
 = f.submit 'Submit', class: 'btn btn-primary'
