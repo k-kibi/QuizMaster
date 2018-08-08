@@ -1,5 +1,6 @@
-class Api::QuizzesController < ApiController
+class Api::QuestionsController < ApiController
   before_action :get_resource, only: %i(show answer)
+
   def index
     @resources = Question.all
   end

@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   root to: 'top#index'
 
   namespace :api do
-    resources :quizzes, only: %i(index show) do
+    resources :questions, only: %i(index) do
       member do
-        post :answer, to: 'quizzes#answer'
+        post :answer, to: 'questions#answer'
       end
     end
   end
