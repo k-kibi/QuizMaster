@@ -12,6 +12,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'questions#index'
-    resources :questions, expect: %i(show)
+    resources :questions, except: %i(show)
   end
 end
