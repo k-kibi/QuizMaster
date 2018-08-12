@@ -10,13 +10,29 @@ describe('<Quiz />', () => {
 
   test('Initial states', () => {
     const wrapper = shallow(<Quiz />);
+    const questions = [
+      { id: 1, content: 'How many letters are there in the English alphabet?' }
+    ];
 
     wrapper.setState({ questions: questions, selected: 0 });
     expect(wrapper.find(AnswerForm).length).toBe(1);
-    expect(wrapper.find(AnswerFeedback).length).toBe(0);
+  });
+});
+
+describe('<AnswerForm />', () => {
+  test('When answer is correct', () => {
+    const wrapper = mount(<AnswerForm />);
+
+    wrapper.setProps({ correct: true });
+    expect(wrapper.find(AnswerFeedback).length).toBe(1);
+    expect(wrapper.find('.valid-feedback').length).toBe(1);
   });
 
-  test('', () => {
+  test('When answer is incorrect', () => {
+    const wrapper = mount(<AnswerForm />);
 
+    wrapper.setProps({ correct: false });
+    expect(wrapper.find(AnswerFeedback).length).toBe(1);
+    expect(wrapper.find('.invalid-feedback').length).toBe(1);
   })
 });
