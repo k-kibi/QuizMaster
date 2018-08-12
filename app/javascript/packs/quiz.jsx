@@ -4,7 +4,9 @@ import 'babel-polyfill'
 import ReactMarkdown from 'react-markdown'
 import axios from 'axios'
 
-class Quiz extends Component {
+export class Quiz extends Component {
+  static get QUESTION_INTERVAL() { return 3000; }
+
   constructor(props) {
     super(props);
     this.state = { questions: [], selected: null, answer: '', correct: null };
@@ -39,7 +41,7 @@ class Quiz extends Component {
     this.setState({ correct: response.data.correct });
     setTimeout(() => {
       this.sampleQuestion();
-    }, 5000);
+    }, Quiz.QUESTION_INTERVAL);
   }
 
   sampleQuestion() {
@@ -64,7 +66,7 @@ class Quiz extends Component {
   }
 }
 
-class AnswerForm extends Component {
+export class AnswerForm extends Component {
   constructor(props) {
     super(props);
     this.state = { answer: '' };
@@ -112,7 +114,7 @@ class AnswerForm extends Component {
   }
 }
 
-class AnswerFeedback extends Component {
+export class AnswerFeedback extends Component {
   render() {
     switch (this.props.correct) {
       case true:
@@ -126,5 +128,5 @@ class AnswerFeedback extends Component {
 }
 
 document.addEventListener("DOMContentLoaded", e => {
-  ReactDOM.render(<Quiz api="/api/questions.json" />, document.querySelector('.container'))
+  ReactDOM.render(<Quiz />, document.querySelector('.container'))
 });
