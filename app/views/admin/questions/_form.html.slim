@@ -1,9 +1,12 @@
 .form-group
   = f.label :content
   = f.text_area :content, class: 'form-control', required: true
+  = error_messages f, :content
+  small * It can be written with markdown.
 
 .form-group
   = f.label :answer
   = f.text_field :answer, class: 'form-control', required: true
+  = error_messages f, :answer
 
 = f.submit 'Submit', class: 'btn btn-primary'

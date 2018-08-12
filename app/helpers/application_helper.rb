@@ -14,4 +14,14 @@ module ApplicationHelper
       end
     end
   end
+
+  # バリデーションエラーメッセージを表示する
+  # @param [ActionView::Helpers::FormBuilder] f
+  # @param [Symbol] method
+  def error_messages(f, method)
+    return nil if f.object.errors[method].blank?
+    content_tag :div, class: 'invalid-feedback' do
+      f.object.errors[method].join('<br />').html_safe
+    end
+  end
 end
