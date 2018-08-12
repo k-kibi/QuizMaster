@@ -1,24 +1,19 @@
-# README
+# 実行方法
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Docker環境を用意しています。以下のように起動してください。
 
-Things you may want to cover:
+```
+docker-compose build
 
-* Ruby version
+docker-compose run app bin/rails db:create
+docker-compose run app bin/rails db:migrate
+docker-compose run app bin/yarn install
 
-* System dependencies
+docker-compose up -d
+```
 
-* Configuration
+`http://localhost:34567` でアプリが起動します。
 
-* Database creation
+登録された問題がランダムで表示されます。フォームに答えを入力してEnterキーを押すと、正解か不正解を表示し、次の問題が表示されます。
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+問題の管理は `http://localhost:34567/admin` から行うことができます。
