@@ -30,6 +30,11 @@ RSpec.describe Admin::QuestionsController, type: :controller do
     it "returns http success" do
       expect(response).to have_http_status(:successful)
     end
+
+    it "assigns the question" do
+      expect(assigns[:resource].content).to eq question.content
+      expect(assigns[:resource].answer).to eq question.answer
+    end
   end
 
   describe "POST #create" do
@@ -42,6 +47,13 @@ RSpec.describe Admin::QuestionsController, type: :controller do
 
     it "creates new question" do
       is_expected.to have_attributes(content: 'Question text', answer: 'Answer')
+    end
+
+    context 'with invalid parameters' do
+      let(:answer) { '' }
+      it 'fail to create' do
+        is_expected.to be_nil
+      end
     end
   end
 
@@ -56,6 +68,13 @@ RSpec.describe Admin::QuestionsController, type: :controller do
 
     it 'updates question' do
       is_expected.to have_attributes(content: 'Updated question text', answer: 'Renewal answer')
+    end
+
+    context 'with invalid parameters' do
+      let(:content) { '' }
+      it 'fail to update' do
+        is_expected.not_to have_attributes(content: '')
+      end
     end
   end
 
