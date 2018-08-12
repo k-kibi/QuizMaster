@@ -43,6 +43,7 @@ class Admin::QuestionsController < AdminController
 
   def question_params
     params.require(:question).permit(:content, :answer)
+        .to_h.map { |k, v| [k, v.strip] }.to_h
   end
 
   def get_resource
