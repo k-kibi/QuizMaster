@@ -5,11 +5,12 @@
 Docker環境を用意しています。以下のように起動してください。
 
 ```
-docker-compose build
+# PostgreSQLのデータディレクトリの作成
+mkdir docker/postgres/volumes
 
-docker-compose run app bin/rails db:create
-docker-compose run app bin/rails db:migrate
+docker-compose build
 docker-compose run app bin/yarn install
+docker-compose run app bin/rails db:setup
 
 docker-compose up
 ```
